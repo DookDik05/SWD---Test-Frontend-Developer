@@ -10,10 +10,17 @@
     "circle": "วงกลม",
     "square": "สี่เหลี่ยม",
     "trapezoid": "สี่เหลี่ยมคางหมู",
-    "parallelogram": "สี่เหลี่ยมด้านขนาน"
+    "parallelogram": "สี่เหลี่ยมด้านขนาน",
+    "shapesSection": "รูปทรง",
+    "clickToRandomize": "เลือกรูปทรงเพื่อสุ่มใหม่",
+    "positionSwapped": "สลับตำแหน่งแล้ว"
   },
   "page2": {
     "title": "จัดการข้อมูลบุคคล",
+    "editPerson": "แก้ไขข้อมูล",
+    "personList": "รายชื่อบุคคล",
+    "editMode": "โหมดแก้ไข",
+    "records": "คน",
     "prefix": "คำนำหน้า",
     "firstName": "ชื่อ",
     "lastName": "นามสกุล",
@@ -43,6 +50,12 @@
     "american": "อเมริกัน",
     "japanese": "ญี่ปุ่น",
     "other": "อื่นๆ",
-    "noData": "ไม่มีข้อมูล"
+    "noData": "ไม่มีข้อมูล",
+    "added": "เพิ่มข้อมูลเรียบร้อย ✓",
+    "updated": "อัปเดตเรียบร้อย ✓",
+    "deleted": "ลบแล้ว",
+    "deletedSelected": "ลบรายการที่เลือกแล้ว",
+    "citizenIdError": "กรุณากรอกให้ครบ 13 หลัก",
+    "phoneError": "รูปแบบเบอร์โทรไม่ถูกต้อง"
   }
 }

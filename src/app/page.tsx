@@ -114,7 +114,7 @@ export default function HomePage() {
 
           {/* Shape selector buttons */}
           <p className="section-label" style={{ marginBottom: 10 }}>
-            {i18n.language === 'th' ? 'เลือกรูปทรงเพื่อสุ่มใหม่' : 'Click a shape to randomize'}
+            {t('page1.clickToRandomize')}
           </p>
           <Row gutter={[8, 8]}>
             {ALL_SHAPES.map((shape) => (
@@ -134,11 +134,11 @@ export default function HomePage() {
         <div className="ui-card">
           <Row justify="space-between" align="middle" style={{ marginBottom: 16 }}>
             <p className="section-label" style={{ margin: 0 }}>
-              {i18n.language === 'th' ? 'รูปทรง' : 'Shapes'}
-            </p>
+            {t('page1.shapesSection')}
+          </p>
             {swapped && (
               <Tag color="green" style={{ borderRadius: 6 }}>
-                {i18n.language === 'th' ? 'สลับตำแหน่งแล้ว' : 'Position swapped'}
+                {t('page1.positionSwapped')}
               </Tag>
             )}
           </Row>

@@ -10,10 +10,17 @@
     "circle": "Circle",
     "square": "Square",
     "trapezoid": "Trapezoid",
-    "parallelogram": "Parallelogram"
+    "parallelogram": "Parallelogram",
+    "shapesSection": "Shapes",
+    "clickToRandomize": "Click a shape to randomize",
+    "positionSwapped": "Position swapped"
   },
   "page2": {
     "title": "Person Management",
+    "editPerson": "Edit Person",
+    "personList": "Person List",
+    "editMode": "Edit mode",
+    "records": "records",
     "prefix": "Title",
     "firstName": "First Name",
     "lastName": "Last Name",
@@ -43,6 +50,12 @@
     "american": "American",
     "japanese": "Japanese",
     "other": "Other",
-    "noData": "No data"
+    "noData": "No data",
+    "added": "Added successfully ✓",
+    "updated": "Updated successfully ✓",
+    "deleted": "Deleted",
+    "deletedSelected": "Deleted selected items",
+    "citizenIdError": "Citizen ID must be 13 digits",
+    "phoneError": "Invalid phone number format"
   }
 }
