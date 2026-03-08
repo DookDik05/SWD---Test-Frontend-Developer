@@ -89,7 +89,7 @@ export default function ShapesPage() {
 
       {/* Shape Grid */}
       <div className="shape-grid-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '24px', marginBottom: '24px', transform: 'translateX(-60px)' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '24px', marginBottom: '24px' }}>
           {displayShapes.slice(0, 3).map((shape, idx) => (
             <div key={`r1-${idx}`} className={`shape-wrapper shape-color-${idx % 2}`} onClick={handleShapeBtn}>
               <div className={`shape-${shape}`} />
@@ -97,7 +97,7 @@ export default function ShapesPage() {
           ))}
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '24px', transform: 'translateX(60px)' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '24px' }}>
           {displayShapes.slice(3, 6).map((shape, idx) => (
             <div key={`r2-${idx}`} className={`shape-wrapper shape-color-${(idx + 1) % 2}`} onClick={handleShapeBtn}>
               <div className={`shape-${shape}`} />
