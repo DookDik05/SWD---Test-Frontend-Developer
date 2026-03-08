@@ -10,7 +10,7 @@
     "formTable": "Form & Table"
   },
   "page1": {
-    "title": "Shape Buttons",
+    "title": "Layout & Style",
     "moveShape": "Move Shape",
     "movePosition": "Move Position",
     "circle": "Circle",
@@ -48,7 +48,7 @@
     "deleteSelected": "Delete Selected",
     "confirmDelete": "Are you sure to delete?",
     "yes": "Yes",
-    "no": "No",
+    "no": "Cancel",
     "name": "Name",
     "mr": "Mr.",
     "mrs": "Mrs.",

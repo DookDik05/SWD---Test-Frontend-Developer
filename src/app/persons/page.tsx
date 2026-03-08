@@ -232,7 +232,7 @@ export default function PersonsPage() {
     },
   ], [t, handleEdit, handleDelete]);
 
-  const renderFormFields = () => (
+  const renderFormFields = (isModal = false) => (
     <>
       {/* Row 1: Title, Firstname, Lastname */}
       <Row gutter={[16, 16]}>
@@ -333,21 +333,23 @@ export default function PersonsPage() {
             <Input style={{ maxWidth: 300 }} />
           </Form.Item>
         </Col>
-        <Col>
-           {/* Form actions pushed to bottom right as in design */}
-           <Row gutter={16}>
-              <Col>
-                <Button onClick={handleReset} style={{ borderRadius: 6 }}>
-                  {t('page2.reset').toUpperCase()}
-                </Button>
-              </Col>
-              <Col>
-                <Button htmlType="submit" style={{ borderRadius: 6, opacity: 0.8 }} className="custom-submit-btn">
-                  {t('page2.submit').toUpperCase()}
-                </Button>
-              </Col>
-            </Row>
-        </Col>
+        {!isModal && (
+          <Col>
+             {/* Form actions pushed to bottom right as in design */}
+             <Row gutter={16}>
+                <Col>
+                  <Button onClick={handleReset} style={{ borderRadius: 6 }}>
+                    {t('page2.reset').toUpperCase()}
+                  </Button>
+                </Col>
+                <Col>
+                  <Button htmlType="submit" style={{ borderRadius: 6, opacity: 0.8 }} className="custom-submit-btn">
+                    {t('page2.submit').toUpperCase()}
+                  </Button>
+                </Col>
+              </Row>
+          </Col>
+        )}
       </Row>
     </>
   );
@@ -445,9 +447,9 @@ export default function PersonsPage() {
         cancelText={t('page2.no')}
         width={800}
       >
-        <Form form={editForm} layout="horizontal" labelAlign="left" onFinish={handleEditSubmit} style={{ marginTop: 20 }}>
-          {renderFormFields()}
-        </Form>
+          <Form form={editForm} layout="horizontal" labelAlign="left" onFinish={handleEditSubmit} style={{ marginTop: 20 }}>
+            {renderFormFields(true)}
+          </Form>
       </Modal>
     </div>
   );
