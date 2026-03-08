@@ -10,7 +10,9 @@ export interface Person {
   gender: string;
   citizenId: string;
   passport: string;
+  countryCode: string;
   phone: string;
+  expectedSalary: string;
 }
 
 interface PersonsState {

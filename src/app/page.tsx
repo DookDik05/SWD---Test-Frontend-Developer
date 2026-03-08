@@ -1,137 +1,90 @@
 'use client';
-import { useState } from 'react';
-import { Button, Row, Col, Select, Tag } from 'antd';
-import { SwapOutlined, RetweetOutlined } from '@ant-design/icons';
+import { Card, Col, Row, Select, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
-import '@/styles/shapes.scss';
 
-type ShapeType = 'circle' | 'square' | 'triangle' | 'oval' | 'trapezoid' | 'parallelogram';
+const { Title, Text } = Typography;
 
-const ALL_SHAPES: ShapeType[] = ['circle', 'square', 'triangle', 'oval', 'trapezoid', 'parallelogram'];
-
-function shuffleArray(arr: ShapeType[]): ShapeType[] {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = a[i];
-    a[i] = a[j];
-    a[j] = temp;
-  }
-  return a;
-}
-
-function rotateLeft(arr: ShapeType[]): ShapeType[] {
-  if (arr.length === 0) return arr;
-  return [...arr.slice(1), arr[0]];
-}
-
-
-export default function HomePage() {
-  const { t, i18n } = useTranslation();
-  const [shapes, setShapes] = useState<ShapeType[]>([...ALL_SHAPES]);
-  const [swapped, setSwapped] = useState<boolean>(false);
-
-  const handleMoveShape = () => setShapes((prev) => rotateLeft(prev));
-  const handleMovePosition = () => setSwapped((prev) => !prev);
-  const handleShapeBtn = () => setShapes(shuffleArray([...ALL_SHAPES]));
-
-  const displayShapes: ShapeType[] = swapped
-    ? [...shapes.slice(3, 6), ...shapes.slice(0, 3)]
-    : shapes;
+export default function Home() {
+  const { i18n } = useTranslation();
 
   return (
-    <>
-      {/* Navbar */}
-      <nav className="app-navbar">
-        <span className="app-navbar__logo">SWD Test</span>
-        <div className="app-navbar__nav">
-          <Link href="/"><Button type="primary" size="small">{t('nav.page1')}</Button></Link>
-          <Link href="/persons"><Button size="small">{t('nav.page2')}</Button></Link>
-        </div>
-        <div className="app-navbar__right">
-          <Select
-            value={i18n.language}
-            onChange={(val: string) => i18n.changeLanguage(val)}
-            size="small"
-            style={{ width: 80 }}
-            options={[{ value: 'en', label: '🇬🇧 EN' }, { value: 'th', label: '🇹🇭 TH' }]}
-          />
-        </div>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      {/* Navbar with Language Switcher ONLY */}
+      <nav className="app-navbar" style={{ justifyContent: 'flex-end' }}>
+        <Select
+          value={i18n.language}
+          onChange={(val: string) => i18n.changeLanguage(val)}
+          size="small"
+          style={{ width: 80 }}
+          options={[
+            { value: 'en', label: '🇬🇧 EN' },
+            { value: 'th', label: '🇹🇭 TH' },
+          ]}
+        />
       </nav>
 
-      <div className="page-container">
-
-        {/* Action Buttons Card */}
-        <div className="ui-card" style={{ marginBottom: 20 }}>
-          <p className="section-label">{t('page1.title')}</p>
-
-          {/* Primary action buttons */}
-          <Row gutter={[12, 12]} style={{ marginBottom: 16 }}>
-            <Col>
-              <Button
-                icon={<RetweetOutlined />}
-                onClick={handleMoveShape}
-                style={{
-                  backgroundColor: '#FFA200',
-                  borderColor: '#FFA200',
-                  color: '#fff',
-                  borderRadius: 10,
-                  fontWeight: 600,
-                  height: 40,
-                  paddingInline: 20,
-                }}
+      {/* Main Content */}
+      <div 
+        className="page-container" 
+        style={{ 
+          flex: 1, 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center',
+          padding: '20px'
+        }}
+      >
+        <Row gutter={[24, 24]} justify="center" style={{ width: '100%', maxWidth: 900 }}>
+          
+          <Col xs={24} sm={12} md={8}>
+            <Link href="/shapes" style={{ textDecoration: 'none' }}>
+              <Card 
+                hoverable 
+                className="ui-card"
+                style={{ height: 160, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
+                bodyStyle={{ padding: 24 }}
               >
-                {t('page1.moveShape')}
-              </Button>
-            </Col>
-            <Col>
-              <Button
-                icon={<SwapOutlined rotate={90} />}
-                onClick={handleMovePosition}
-                style={{
-                  backgroundColor: '#6EDA78',
-                  borderColor: '#6EDA78',
-                  color: '#fff',
-                  borderRadius: 10,
-                  fontWeight: 600,
-                  height: 40,
-                  paddingInline: 20,
-                }}
+                <Title level={5} style={{ margin: 0, fontWeight: 600 }}>Test 1</Title>
+                <Text type="secondary" style={{ marginTop: 20, display: 'block' }}>
+                  Layout & Style
+                </Text>
+              </Card>
+            </Link>
+          </Col>
+
+          <Col xs={24} sm={12} md={8}>
+            <Card 
+              hoverable 
+              className="ui-card"
+              style={{ height: 160, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
+              bodyStyle={{ padding: 24 }}
+            >
+              <Title level={5} style={{ margin: 0, fontWeight: 600 }}>Test 2</Title>
+              <Text type="secondary" style={{ marginTop: 20, display: 'block' }}>
+                Connect API
+              </Text>
+            </Card>
+          </Col>
+
+          <Col xs={24} sm={12} md={8}>
+            <Link href="/persons" style={{ textDecoration: 'none' }}>
+              <Card 
+                hoverable 
+                className="ui-card"
+                style={{ height: 160, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
+                bodyStyle={{ padding: 24 }}
               >
-                {t('page1.movePosition')}
-              </Button>
-            </Col>
-          </Row>
+                <Title level={5} style={{ margin: 0, fontWeight: 600 }}>Test 3</Title>
+                <Text type="secondary" style={{ marginTop: 20, display: 'block' }}>
+                  Form & Table
+                </Text>
+              </Card>
+            </Link>
+          </Col>
 
-          {/* Removed Shape selector buttons to match instructions strictly */}
-        </div>
-
-        {/* Shapes Display Card */}
-        <div className="ui-card">
-          <Row justify="space-between" align="middle" style={{ marginBottom: 16 }}>
-            <p className="section-label" style={{ margin: 0 }}>
-            {t('page1.shapesSection')}
-          </p>
-            {swapped && (
-              <Tag color="green" style={{ borderRadius: 6 }}>
-                {t('page1.positionSwapped')}
-              </Tag>
-            )}
-          </Row>
-          <Row gutter={[0, 20]} justify="center">
-            {displayShapes.map((shape, idx) => (
-              <Col span={8} style={{ display: 'flex', justifyContent: 'center' }} key={idx}>
-                {/* Each shape acts as a button that shuffles positions */}
-                <div className={`shape-wrapper shape-color-${idx % 2}`} onClick={handleShapeBtn}>
-                  <div className={`shape-${shape}`} />
-                </div>
-              </Col>
-            ))}
-          </Row>
-        </div>
-
+        </Row>
       </div>
-    </>
+    </div>
   );
 }
