@@ -6,9 +6,9 @@ import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import '@/styles/shapes.scss';
 
-type ShapeType = 'circle' | 'square' | 'trapezoid' | 'parallelogram';
+type ShapeType = 'circle' | 'square' | 'triangle' | 'oval' | 'trapezoid' | 'parallelogram';
 
-const ALL_SHAPES: ShapeType[] = ['circle', 'square', 'trapezoid', 'parallelogram'];
+const ALL_SHAPES: ShapeType[] = ['circle', 'square', 'triangle', 'oval', 'trapezoid', 'parallelogram'];
 
 function shuffleArray(arr: ShapeType[]): ShapeType[] {
   const a = [...arr];
@@ -29,6 +29,8 @@ function rotateLeft(arr: ShapeType[]): ShapeType[] {
 const shapeKeys: Record<ShapeType, string> = {
   circle: 'page1.circle',
   square: 'page1.square',
+  triangle: 'page1.triangle',
+  oval: 'page1.oval',
   trapezoid: 'page1.trapezoid',
   parallelogram: 'page1.parallelogram',
 };
@@ -43,7 +45,7 @@ export default function HomePage() {
   const handleShapeBtn = () => setShapes(shuffleArray([...ALL_SHAPES]));
 
   const displayShapes: ShapeType[] = swapped
-    ? [...shapes.slice(2, 4), ...shapes.slice(0, 2)]
+    ? [...shapes.slice(3, 6), ...shapes.slice(0, 3)]
     : shapes;
 
   return (

@@ -11,6 +11,8 @@
     "square": "สี่เหลี่ยมจัตุรัส",
     "trapezoid": "สี่เหลี่ยมคางหมู",
     "parallelogram": "สี่เหลี่ยมด้านขนาน",
+    "triangle": "สามเหลี่ยม",
+    "oval": "วงรี",
     "shapesSection": "รูปทรง",
     "clickToRandomize": "เลือกรูปทรงเพื่อสุ่มใหม่",
     "positionSwapped": "สลับตำแหน่งแล้ว"

@@ -11,6 +11,8 @@
     "square": "Square",
     "trapezoid": "Trapezoid",
     "parallelogram": "Parallelogram",
+    "triangle": "Triangle",
+    "oval": "Oval",
     "shapesSection": "Shapes",
     "clickToRandomize": "Click a shape to randomize",
     "positionSwapped": "Position swapped"

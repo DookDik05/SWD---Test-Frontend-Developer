@@ -21,12 +21,23 @@ $green: #6EDA78;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-// ===== Trapezoid =====
-.shape-trapezoid {
+// ===== Triangle =====
+.shape-triangle {
   width: 0;
   height: 0;
   border-left: 45px solid transparent;
   border-right: 45px solid transparent;
+  border-bottom: 88px solid $orange;
+  filter: drop-shadow(0 4px 10px rgba(255, 162, 0, 0.35));
+  transition: filter 0.25s ease, transform 0.25s ease;
+}
+
+// ===== Trapezoid =====
+.shape-trapezoid {
+  width: 70px;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
   border-bottom: 88px solid $orange;
   filter: drop-shadow(0 4px 10px rgba(255, 162, 0, 0.35));
   transition: filter 0.25s ease, transform 0.25s ease;
@@ -39,6 +50,16 @@ $green: #6EDA78;
   background-color: $green;
   transform: skewX(-20deg);
   border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(110, 218, 120, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+// ===== Oval =====
+.shape-oval {
+  width: 104px;
+  height: 64px;
+  border-radius: 50px / 32px;
+  background-color: $green;
   box-shadow: 0 4px 16px rgba(110, 218, 120, 0.35);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -62,11 +83,13 @@ $green: #6EDA78;
 
     .shape-circle,
     .shape-square,
-    .shape-parallelogram {
+    .shape-parallelogram,
+    .shape-oval {
       transform: scale(1.08);
     }
 
-    .shape-trapezoid {
+    .shape-trapezoid,
+    .shape-triangle {
       filter: drop-shadow(0 8px 14px rgba(255, 162, 0, 0.45));
     }
   }
@@ -75,7 +98,7 @@ $green: #6EDA78;
 // ===== Shape Grid =====
 .shape-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   justify-items: center;
   animation: fadeIn 0.3s ease;
@@ -90,15 +113,19 @@ $green: #6EDA78;
 .shape-color-0 {
   .shape-circle,
   .shape-square,
-  .shape-parallelogram { background-color: $orange; box-shadow: 0 4px 16px rgba(255,162,0,0.35); }
-  .shape-trapezoid { border-bottom-color: $orange; }
+  .shape-parallelogram,
+  .shape-oval { background-color: $orange; box-shadow: 0 4px 16px rgba(255,162,0,0.35); }
+  .shape-trapezoid,
+  .shape-triangle { border-bottom-color: $orange; }
 }
 
 .shape-color-1 {
   .shape-circle,
   .shape-square,
-  .shape-parallelogram { background-color: $green; box-shadow: 0 4px 16px rgba(110,218,120,0.35); }
-  .shape-trapezoid { border-bottom-color: $green; }
+  .shape-parallelogram,
+  .shape-oval { background-color: $green; box-shadow: 0 4px 16px rgba(110,218,120,0.35); }
+  .shape-trapezoid,
+  .shape-triangle { border-bottom-color: $green; }
 }
 
 // Parallelogram: undo inherited transform for color variants
