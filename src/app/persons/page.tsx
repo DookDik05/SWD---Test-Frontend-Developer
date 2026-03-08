@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useMemo, useState, Key, useRef } from 'react';
 import {
   Button, Col, DatePicker, Form, Input, Popconfirm,
-  Radio, Row, Select, Table, Typography, message, Modal, Space
+  Radio, Row, Select, Table, Typography, message, Modal, Space, Checkbox
 } from 'antd';
 import type { InputRef } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
@@ -376,6 +376,7 @@ export default function PersonsPage() {
       </nav>
 
       <div className="page-container" style={{ padding: '20px', maxWidth: 1000, margin: '0 auto', width: '100%' }}>
+        <h1 style={{ marginBottom: 20, textAlign: 'left', fontWeight: 600 }}>{t('page2.formTableTitle')}</h1>
         {/* Create Form Card */}
         <div className="ui-card" style={{ marginBottom: 40, padding: '30px 40px', border: '1px solid black' }}>
           <style dangerouslySetInnerHTML={{__html: `
@@ -400,6 +401,19 @@ export default function PersonsPage() {
         <Row justify="space-between" align="middle" style={{ marginBottom: 16 }}>
           <Col>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <Checkbox 
+                checked={selectedRowKeys.length === persons.length && persons.length > 0}
+                indeterminate={selectedRowKeys.length > 0 && selectedRowKeys.length < persons.length}
+                onChange={(e: any) => {
+                  if (e.target.checked) {
+                    setSelectedRowKeys(persons.map(p => p.id));
+                  } else {
+                    setSelectedRowKeys([]);
+                  }
+                }}
+              >
+                {t('page2.selectAll')}
+              </Checkbox>
               <Button 
                 onClick={handleBulkDelete}
                 disabled={selectedRowKeys.length === 0}
@@ -418,7 +432,7 @@ export default function PersonsPage() {
             columns={columns}
             dataSource={persons}
             pagination={{
-              pageSize: 10,
+              pageSize: 3,
               showSizeChanger: false,
               position: ['topRight'],
               itemRender: (page, type, originalElement) => {

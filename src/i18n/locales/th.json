@@ -72,6 +72,8 @@
     "next": "ถัดไป",
     "pleaseSelect": "กรุณาเลือก",
     "passportPlaceholder": "หมายเลขพาสปอร์ต",
-    "mobilePhone": "เบอร์โทรศัพท์มือถือ"
+    "mobilePhone": "เบอร์โทรศัพท์มือถือ",
+    "formTableTitle": "การจัดการฟอร์ม & ตาราง",
+    "selectAll": "เลือกทั้งหมด"
   }
 }

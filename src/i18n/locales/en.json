@@ -72,6 +72,8 @@
     "next": "NEXT",
     "pleaseSelect": "Please Select",
     "passportPlaceholder": "Passport No",
-    "mobilePhone": "Mobile Phone"
+    "mobilePhone": "Mobile Phone",
+    "formTableTitle": "Form & Table",
+    "selectAll": "Select All"
   }
 }
