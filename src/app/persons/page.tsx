@@ -407,12 +407,6 @@ export default function PersonsPage() {
               </Button>
             </div>
           </Col>
-          <Col>
-              {/* Pagination text matching screenshot */}
-              <div style={{ fontSize: 12 }}>
-                 {t('page2.prev')} <span style={{display: 'inline-block', width: 24, textAlign: 'center'}}>1</span> {t('page2.next')}
-              </div>
-          </Col>
         </Row>
 
         {/* Table Card */}
@@ -421,7 +415,17 @@ export default function PersonsPage() {
             rowKey="id"
             columns={columns}
             dataSource={persons}
-            pagination={false} /* Disabled standard pagination to mimic screenshot manually if needed, or we can use ant's */
+            pagination={{
+              pageSize: 10,
+              showSizeChanger: false,
+              position: ['topRight'],
+              itemRender: (page, type, originalElement) => {
+                if (type === 'prev') return <Button type="link" style={{ color: '#4B5563', fontSize: 12 }}>{t('page2.prev')}</Button>;
+                if (type === 'next') return <Button type="link" style={{ color: '#4B5563', fontSize: 12 }}>{t('page2.next')}</Button>;
+                return originalElement;
+              },
+              style: { marginBottom: 16, marginRight: 16 }
+            }}
             rowSelection={{ selectedRowKeys, onChange: (keys) => setSelectedRowKeys(keys) }}
             locale={{ emptyText: <EmptyPersonState label={t('page2.noData')} /> }}
             size="middle"
