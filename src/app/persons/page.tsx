@@ -4,6 +4,7 @@ import {
   Button, Col, DatePicker, Form, Input, Popconfirm,
   Radio, Row, Select, Table, Typography, message, Modal, Space, Checkbox
 } from 'antd';
+import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 import type { InputRef } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
@@ -404,7 +405,7 @@ export default function PersonsPage() {
               <Checkbox 
                 checked={selectedRowKeys.length === persons.length && persons.length > 0}
                 indeterminate={selectedRowKeys.length > 0 && selectedRowKeys.length < persons.length}
-                onChange={(e: any) => {
+                onChange={(e: CheckboxChangeEvent) => {
                   if (e.target.checked) {
                     setSelectedRowKeys(persons.map(p => p.id));
                   } else {
