@@ -6,7 +6,7 @@
   "home": {
     "test1": "Test 1",
     "layoutStyle": "Layout & Style",
-    "test3": "Test 3",
+    "test2": "Test 2",
     "formTable": "Form & Table"
   },
   "page1": {
@@ -64,6 +64,14 @@
     "deleted": "Deleted",
     "deletedSelected": "Deleted selected items",
     "citizenIdError": "Citizen ID must be 13 digits",
-    "phoneError": "Invalid phone number format"
+    "phoneError": "Invalid phone number format",
+    "expectedSalary": "Expected Salary",
+    "unsex": "Unsex",
+    "manage": "MANAGE",
+    "prev": "PREV",
+    "next": "NEXT",
+    "pleaseSelect": "Please Select",
+    "passportPlaceholder": "Passport No",
+    "mobilePhone": "Mobile Phone"
   }
 }

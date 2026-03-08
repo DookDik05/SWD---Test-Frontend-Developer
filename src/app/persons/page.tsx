@@ -191,7 +191,7 @@ export default function PersonsPage() {
       sorter: (a, b) => a.gender.localeCompare(b.gender)
     },
     {
-      title: 'Mobile Phone',
+      title: t('page2.mobilePhone'),
       render: (_: unknown, r: Person) => {
         if (!r.phone) return <span style={{ color: '#ccc' }}>—</span>;
         return `${r.countryCode || ''}${r.phone}`;
@@ -206,13 +206,13 @@ export default function PersonsPage() {
       sorter: (a, b) => a.nationality.localeCompare(b.nationality)
     },
     {
-      title: 'MANAGE',
+      title: t('page2.manage').toUpperCase(),
       width: 140,
       render: (_: unknown, record: Person) => (
         <Row gutter={12} wrap={false}>
           <Col>
             <span style={{ cursor: 'pointer', fontWeight: 600, fontSize: 13, color: '#4B5563' }} onClick={() => handleEdit(record)}>
-              EDIT
+              {t('page2.edit').toUpperCase()}
             </span>
           </Col>
           <Col>
@@ -223,7 +223,7 @@ export default function PersonsPage() {
               cancelText={t('page2.no')}
             >
               <span style={{ cursor: 'pointer', fontWeight: 600, fontSize: 13, color: '#4B5563' }}>
-                DELETE
+                {t('page2.delete').toUpperCase()}
               </span>
             </Popconfirm>
           </Col>
@@ -266,7 +266,7 @@ export default function PersonsPage() {
         </Col>
         <Col xs={24} sm={10}>
           <Form.Item name="nationality" label={t('page2.nationality')}>
-            <Select placeholder="-- Please Select --">
+            <Select placeholder={t('page2.pleaseSelect')}>
               <Select.Option value="thai">{t('page2.thai')}</Select.Option>
               <Select.Option value="american">{t('page2.american')}</Select.Option>
               <Select.Option value="japanese">{t('page2.japanese')}</Select.Option>
@@ -277,7 +277,7 @@ export default function PersonsPage() {
       </Row>
 
       {/* Row 3: CitizenID (5 boxes) */}
-      <Form.Item label="CitizenID" style={{ marginBottom: 16 }}>
+      <Form.Item label={t('page2.citizenId')} style={{ marginBottom: 16 }}>
         <Row gutter={8} align="middle" wrap={false}>
           <Col><Form.Item name="citizenId1" noStyle><Input ref={inputRefs.c1} maxLength={1} style={{ width: 40, textAlign: 'center' }} onChange={(e) => handleCitizenIdChange(e, inputRefs.c2, 1)} /></Form.Item></Col>
           <Col><Text type="secondary">-</Text></Col>
@@ -296,12 +296,12 @@ export default function PersonsPage() {
         <Radio.Group>
           <Radio value="male">{t('page2.male')}</Radio>
           <Radio value="female">{t('page2.female')}</Radio>
-          <Radio value="unspecified">Unsex</Radio>
+          <Radio value="unspecified">{t('page2.unsex')}</Radio>
         </Radio.Group>
       </Form.Item>
 
       {/* Row 5: Mobile Phone */}
-      <Form.Item label={<span className="required-star">Mobile Phone</span>} required>
+      <Form.Item label={<span className="required-star">{t('page2.mobilePhone')}</span>} required>
         <Space.Compact style={{ width: '100%', maxWidth: 400 }}>
           <Form.Item name="countryCode" rules={[{ required: true, message: '' }]} noStyle>
             <Select style={{ width: '30%' }}>
@@ -317,7 +317,7 @@ export default function PersonsPage() {
       </Form.Item>
 
       {/* Row 6: Passport */}
-      <Form.Item name="passport" label="Passport No">
+      <Form.Item name="passport" label={t('page2.passportPlaceholder')}>
         <Input style={{ maxWidth: 300 }} />
       </Form.Item>
 
@@ -326,7 +326,7 @@ export default function PersonsPage() {
         <Col>
           <Form.Item 
             name="expectedSalary" 
-            label={<span className="required-star">Expected Salary</span>} 
+            label={<span className="required-star">{t('page2.expectedSalary')}</span>} 
             rules={[{ required: true, message: '' }]}
             style={{ marginBottom: 0 }}
           >
@@ -403,14 +403,14 @@ export default function PersonsPage() {
                 disabled={selectedRowKeys.length === 0}
                 style={{ borderRadius: 0, fontWeight: 600 }}
               >
-                DELETE
+                {t('page2.delete').toUpperCase()}
               </Button>
             </div>
           </Col>
           <Col>
               {/* Pagination text matching screenshot */}
               <div style={{ fontSize: 12 }}>
-                 PREV <span style={{display: 'inline-block', width: 24, textAlign: 'center'}}>1</span> NEXT
+                 {t('page2.prev')} <span style={{display: 'inline-block', width: 24, textAlign: 'center'}}>1</span> {t('page2.next')}
               </div>
           </Col>
         </Row>

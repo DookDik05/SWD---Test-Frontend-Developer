@@ -7,18 +7,16 @@ $green: #6EDA78;
   height: 90px;
   border-radius: 50%;
   background-color: $orange;
-  box-shadow: 0 4px 16px rgba(255, 162, 0, 0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
 // ===== Square =====
 .shape-square {
   width: 88px;
   height: 88px;
-  border-radius: 12px;
+  border-radius: 8px;
   background-color: $green;
-  box-shadow: 0 4px 16px rgba(110, 218, 120, 0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
 // ===== Triangle =====
@@ -28,8 +26,7 @@ $green: #6EDA78;
   border-left: 45px solid transparent;
   border-right: 45px solid transparent;
   border-bottom: 88px solid $orange;
-  filter: drop-shadow(0 4px 10px rgba(255, 162, 0, 0.35));
-  transition: filter 0.25s ease, transform 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
 .shape-triangle-left {
@@ -75,16 +72,14 @@ $green: #6EDA78;
   width: 100%;
   height: 160px;
   background: #fff;
-  border-radius: 16px;
+  border: 1px solid #E8EBEF;
+  border-radius: 12px;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease;
   
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-
+    background-color: #fcfcfc;
     .shape-triangle-left { border-right-color: $green; }
     .shape-triangle-right { border-left-color: $green; }
     .shape-triangle-up { border-bottom-color: $orange; }
@@ -109,8 +104,7 @@ $green: #6EDA78;
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
   border-bottom: 88px solid $orange;
-  filter: drop-shadow(0 4px 10px rgba(255, 162, 0, 0.35));
-  transition: filter 0.25s ease, transform 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
 // ===== Parallelogram =====
@@ -119,19 +113,17 @@ $green: #6EDA78;
   height: 72px;
   background-color: $green;
   transform: skewX(-20deg);
-  border-radius: 4px;
-  box-shadow: 0 4px 16px rgba(110, 218, 120, 0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 2px;
+  transition: transform 0.25s ease;
 }
 
 // ===== Oval =====
 .shape-oval {
   width: 104px;
   height: 64px;
-  border-radius: 50px / 32px;
+  border-radius: 50% / 50%;
   background-color: $green;
-  box-shadow: 0 4px 16px rgba(110, 218, 120, 0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
 // ===== Shape Wrapper =====
@@ -148,27 +140,27 @@ $green: #6EDA78;
   transition: box-shadow 0.25s ease, transform 0.25s ease;
 
   &:hover {
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.10);
-    transform: translateY(-4px);
+    background-color: #fcfcfc;
+    transform: translateY(-2px);
 
     .shape-circle,
     .shape-square,
     .shape-parallelogram,
     .shape-oval {
-      transform: scale(1.08);
+      transform: scale(1.04);
     }
 
     .shape-trapezoid,
     .shape-triangle {
-      filter: drop-shadow(0 8px 14px rgba(255, 162, 0, 0.45));
+      transform: scale(1.04);
     }
   }
 }
 
 
 @keyframes fadeIn {
-  from { opacity: 0.5; transform: scale(0.98); }
-  to   { opacity: 1;   transform: scale(1); }
+  from { opacity: 0.7; }
+  to   { opacity: 1; }
 }
 
 // ===== Alternating colors =====
@@ -176,7 +168,7 @@ $green: #6EDA78;
   .shape-circle,
   .shape-square,
   .shape-parallelogram,
-  .shape-oval { background-color: $orange; box-shadow: 0 4px 16px rgba(255,162,0,0.35); }
+  .shape-oval { background-color: $orange; }
   .shape-trapezoid,
   .shape-triangle { border-bottom-color: $orange; }
 }
@@ -185,7 +177,7 @@ $green: #6EDA78;
   .shape-circle,
   .shape-square,
   .shape-parallelogram,
-  .shape-oval { background-color: $green; box-shadow: 0 4px 16px rgba(110,218,120,0.35); }
+  .shape-oval { background-color: $green; }
   .shape-trapezoid,
   .shape-triangle { border-bottom-color: $green; }
 }

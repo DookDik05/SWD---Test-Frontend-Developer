@@ -3,15 +3,15 @@
 :root {
   --color-orange: #FFA200;
   --color-green: #6EDA78;
-  --color-bg: #F7F8FA;
+  --color-bg: #F8F9FA;
   --color-card: #FFFFFF;
-  --color-border: #E8E8E8;
-  --color-text-primary: #1A1A2E;
-  --color-text-secondary: #6B7280;
-  --radius-card: 16px;
-  --radius-btn: 10px;
-  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
-  --shadow-hover: 0 6px 24px rgba(0, 0, 0, 0.10);
+  --color-border: #E8EBEF;
+  --color-text-primary: #2C3E50;
+  --color-text-secondary: #7F8C8D;
+  --radius-card: 12px;
+  --radius-btn: 8px;
+  --shadow-card: 0 4px 6px rgba(0, 0, 0, 0.02);
+  --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.05);
 }
 
 * {

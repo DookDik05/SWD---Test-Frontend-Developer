@@ -67,7 +67,7 @@ export default function Home() {
                 styles={{ body: { padding: '0 30px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%' } }}
               >
                 <Title level={5} style={{ margin: 0, fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0 }}>
-                  {t('home.test3')}
+                  {t('home.test2')}
                 </Title>
                 <div style={{ width: 2, height: 24, background: '#eee', margin: '0 20px' }} />
                 <Text type="secondary" style={{ margin: 0, fontWeight: 500, whiteSpace: 'nowrap', flexShrink: 0 }}>
