@@ -95,14 +95,6 @@ $green: #6EDA78;
   }
 }
 
-// ===== Shape Grid =====
-.shape-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  justify-items: center;
-  animation: fadeIn 0.3s ease;
-}
 
 @keyframes fadeIn {
   from { opacity: 0.5; transform: scale(0.98); }

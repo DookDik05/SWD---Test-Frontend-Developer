@@ -26,14 +26,6 @@ function rotateLeft(arr: ShapeType[]): ShapeType[] {
   return [...arr.slice(1), arr[0]];
 }
 
-const shapeKeys: Record<ShapeType, string> = {
-  circle: 'page1.circle',
-  square: 'page1.square',
-  triangle: 'page1.triangle',
-  oval: 'page1.oval',
-  trapezoid: 'page1.trapezoid',
-  parallelogram: 'page1.parallelogram',
-};
 
 export default function HomePage() {
   const { t, i18n } = useTranslation();
@@ -112,24 +104,7 @@ export default function HomePage() {
             </Col>
           </Row>
 
-          <hr className="ui-divider" />
-
-          {/* Shape selector buttons */}
-          <p className="section-label" style={{ marginBottom: 10 }}>
-            {t('page1.clickToRandomize')}
-          </p>
-          <Row gutter={[8, 8]}>
-            {ALL_SHAPES.map((shape) => (
-              <Col key={shape}>
-                <Button
-                  onClick={handleShapeBtn}
-                  style={{ borderRadius: 8, height: 36 }}
-                >
-                  {t(shapeKeys[shape])}
-                </Button>
-              </Col>
-            ))}
-          </Row>
+          {/* Removed Shape selector buttons to match instructions strictly */}
         </div>
 
         {/* Shapes Display Card */}
@@ -144,13 +119,16 @@ export default function HomePage() {
               </Tag>
             )}
           </Row>
-          <div className="shape-grid">
+          <Row gutter={[0, 20]} justify="center">
             {displayShapes.map((shape, idx) => (
-              <div className={`shape-wrapper shape-color-${idx % 2}`} key={idx}>
-                <div className={`shape-${shape}`} />
-              </div>
+              <Col span={8} style={{ display: 'flex', justifyContent: 'center' }} key={idx}>
+                {/* Each shape acts as a button that shuffles positions */}
+                <div className={`shape-wrapper shape-color-${idx % 2}`} onClick={handleShapeBtn}>
+                  <div className={`shape-${shape}`} />
+                </div>
+              </Col>
             ))}
-          </div>
+          </Row>
         </div>
 
       </div>
