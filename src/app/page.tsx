@@ -6,7 +6,7 @@ import Link from 'next/link';
 const { Title, Text } = Typography;
 
 export default function Home() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -45,9 +45,9 @@ export default function Home() {
                 style={{ height: 160, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
                 bodyStyle={{ padding: 24 }}
               >
-                <Title level={5} style={{ margin: 0, fontWeight: 600 }}>Test 1</Title>
+                <Title level={5} style={{ margin: 0, fontWeight: 600 }}>{t('home.test1')}</Title>
                 <Text type="secondary" style={{ marginTop: 20, display: 'block' }}>
-                  Layout & Style
+                  {t('home.layoutStyle')}
                 </Text>
               </Card>
             </Link>
@@ -60,10 +60,6 @@ export default function Home() {
               style={{ height: 160, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
               bodyStyle={{ padding: 24 }}
             >
-              <Title level={5} style={{ margin: 0, fontWeight: 600 }}>Test 2</Title>
-              <Text type="secondary" style={{ marginTop: 20, display: 'block' }}>
-                Connect API
-              </Text>
             </Card>
           </Col>
 
@@ -75,9 +71,9 @@ export default function Home() {
                 style={{ height: 160, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
                 bodyStyle={{ padding: 24 }}
               >
-                <Title level={5} style={{ margin: 0, fontWeight: 600 }}>Test 3</Title>
+                <Title level={5} style={{ margin: 0, fontWeight: 600 }}>{t('home.test3')}</Title>
                 <Text type="secondary" style={{ marginTop: 20, display: 'block' }}>
-                  Form & Table
+                  {t('home.formTable')}
                 </Text>
               </Card>
             </Link>

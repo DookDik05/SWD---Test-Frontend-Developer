@@ -3,6 +3,12 @@
     "page1": "Home",
     "page2": "Persons"
   },
+  "home": {
+    "test1": "Test 1",
+    "layoutStyle": "Layout & Style",
+    "test3": "Test 3",
+    "formTable": "Form & Table"
+  },
   "page1": {
     "title": "Shape Buttons",
     "moveShape": "Move Shape",

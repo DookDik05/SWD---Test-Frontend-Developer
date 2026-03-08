@@ -2,12 +2,10 @@
 import { useCallback, useEffect, useMemo, useState, Key, useRef } from 'react';
 import {
   Button, Col, DatePicker, Form, Input, Popconfirm,
-  Radio, Row, Select, Table, Tag, Typography, message, Modal, Space
+  Radio, Row, Select, Table, Typography, message, Modal, Space
 } from 'antd';
 import type { InputRef } from 'antd';
-import {
-  UserOutlined, PhoneOutlined, GlobalOutlined
-} from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
@@ -39,11 +37,6 @@ interface FormValues {
   expectedSalary?: string;
 }
 
-const genderColor: Record<string, string> = {
-  male: 'blue',
-  female: 'pink',
-  unspecified: 'default',
-};
 
 // ───────────────────────────────────────────────────────────────────
 // Sub-components
@@ -58,12 +51,6 @@ function EmptyPersonState({ label }: { label: string }) {
   );
 }
 
-const avatarStyle: React.CSSProperties = {
-  width: 36, height: 36, borderRadius: '50%',
-  background: 'linear-gradient(135deg, #FFA200, #FFD166)',
-  display: 'flex', alignItems: 'center', justifyContent: 'center',
-  color: '#fff', fontWeight: 700, fontSize: 14, flexShrink: 0,
-};
 
 // ───────────────────────────────────────────────────────────────────
 // Main Page
@@ -190,57 +177,36 @@ export default function PersonsPage() {
     }
   };
 
-  const prefixLabel = useMemo<Record<string, string>>(() => ({
-    mr: t('page2.mr'),
-    mrs: t('page2.mrs'),
-    ms: t('page2.ms'),
-  }), [t]);
 
   const columns = useMemo<ColumnsType<Person>>(() => [
     {
       title: t('page2.name'),
-      render: (_: unknown, r: Person) => (
-        <Row align="middle" gutter={8} wrap={false}>
-          <Col>
-            <div style={avatarStyle}>
-              {r.firstName.charAt(0).toUpperCase()}
-            </div>
-          </Col>
-          <Col>
-            <div style={{ fontWeight: 600, lineHeight: '1.3' }}>
-              {`${prefixLabel[r.prefix] ?? r.prefix} ${r.firstName} ${r.lastName}`}
-            </div>
-            {r.birthday && (
-              <div style={{ fontSize: 12, color: '#9CA3AF' }}>{r.birthday}</div>
-            )}
-          </Col>
-        </Row>
-      ),
+      render: (_: unknown, r: Person) => `${r.firstName} ${r.lastName}`,
+      sorter: (a, b) => a.firstName.localeCompare(b.firstName)
     },
     {
       title: t('page2.gender'),
       dataIndex: 'gender',
-      render: (val: string) => (
-        <Tag color={genderColor[val] ?? 'default'} style={{ borderRadius: 6 }}>
-          {val === 'unspecified' ? 'Unsex' : t(`page2.${val}`) || val}
-        </Tag>
-      ),
+      render: (val: string) => val === 'unspecified' ? 'Unsex' : (t(`page2.${val}`) || val),
+      sorter: (a, b) => a.gender.localeCompare(b.gender)
     },
     {
-      title: <><PhoneOutlined /> {t('page2.phone')}</>,
+      title: t('page2.phone'),
       render: (_: unknown, r: Person) => {
         if (!r.phone) return <span style={{ color: '#ccc' }}>—</span>;
-        return `${r.countryCode || ''} ${r.phone}`;
-      }
+        return `${r.countryCode || ''}${r.phone}`;
+      },
+      sorter: (a, b) => a.phone.localeCompare(b.phone)
     },
     {
-      title: <><GlobalOutlined /> {t('page2.nationality')}</>,
+      title: t('page2.nationality'),
       dataIndex: 'nationality',
       render: (val: string) =>
         val ? t(`page2.${val}`) || val : <span style={{ color: '#ccc' }}>—</span>,
+      sorter: (a, b) => a.nationality.localeCompare(b.nationality)
     },
     {
-      title: '',
+      title: 'MANAGE',
       width: 140,
       render: (_: unknown, record: Person) => (
         <Row gutter={6} wrap={false}>
@@ -265,7 +231,7 @@ export default function PersonsPage() {
         </Row>
       ),
     },
-  ], [t, prefixLabel, handleEdit, handleDelete]);
+  ], [t, handleEdit, handleDelete]);
 
   const renderFormFields = () => (
     <>

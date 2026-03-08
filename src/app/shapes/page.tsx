@@ -84,7 +84,7 @@ export default function HomePage() {
             </Col>
             
             {/* Center Control */}
-            <Col xs={24} sm={8} md={10}>
+            <Col xs={24} sm={8} md={6}>
               <div className="control-shape-wrapper" style={{ flexDirection: 'row', gap: 20 }} onClick={handleMovePosition}>
                 <div className="shape-triangle-up" />
                 <div className="shape-triangle-down" />
