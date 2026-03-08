@@ -37,16 +37,19 @@ export default function Home() {
       >
         <Row gutter={[24, 24]} justify="center" style={{ width: '100%', maxWidth: 900 }}>
           
-          <Col span={10}>
+          <Col span={11}>
             <Link href="/shapes" style={{ textDecoration: 'none', display: 'block', width: '100%' }}>
               <Card 
                 hoverable 
                 className="ui-card"
-                style={{ minHeight: 120, display: 'flex', alignItems: 'center' }}
-                styles={{ body: { padding: '0 24px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%' } }}
+                style={{ minHeight: 100, display: 'flex', alignItems: 'center' }}
+                styles={{ body: { padding: '0 30px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%' } }}
               >
-                <Title level={5} style={{ margin: 0, fontWeight: 600 }}>{t('home.test1')}</Title>
-                <Text type="secondary" style={{ margin: 0 }}>
+                <Title level={5} style={{ margin: 0, fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0 }}>
+                  {t('home.test1')}
+                </Title>
+                <div style={{ width: 2, height: 24, background: '#eee', margin: '0 20px' }} />
+                <Text type="secondary" style={{ margin: 0, fontWeight: 500, whiteSpace: 'nowrap', flexShrink: 0 }}>
                   {t('home.layoutStyle')}
                 </Text>
               </Card>
@@ -55,16 +58,19 @@ export default function Home() {
 
 
 
-          <Col span={10}>
+          <Col span={11}>
             <Link href="/persons" style={{ textDecoration: 'none', display: 'block', width: '100%' }}>
               <Card 
                 hoverable 
                 className="ui-card"
-                style={{ minHeight: 120, display: 'flex', alignItems: 'center' }}
-                styles={{ body: { padding: '0 24px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%' } }}
+                style={{ minHeight: 100, display: 'flex', alignItems: 'center' }}
+                styles={{ body: { padding: '0 30px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%' } }}
               >
-                <Title level={5} style={{ margin: 0, fontWeight: 600 }}>{t('home.test3')}</Title>
-                <Text type="secondary" style={{ margin: 0 }}>
+                <Title level={5} style={{ margin: 0, fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0 }}>
+                  {t('home.test3')}
+                </Title>
+                <div style={{ width: 2, height: 24, background: '#eee', margin: '0 20px' }} />
+                <Text type="secondary" style={{ margin: 0, fontWeight: 500, whiteSpace: 'nowrap', flexShrink: 0 }}>
                   {t('home.formTable')}
                 </Text>
               </Card>
