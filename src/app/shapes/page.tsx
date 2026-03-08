@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { Row, Col, Space } from 'antd';
 import { useTranslation } from 'react-i18next';
 import '@/styles/shapes.scss';
@@ -35,14 +35,19 @@ export default function ShapesPage() {
   const [shapes, setShapes] = useState<ShapeType[]>([...ALL_SHAPES]);
   const [swapped, setSwapped] = useState<boolean>(false);
 
-  const handleMoveLeft = () => setShapes((prev) => rotateLeft(prev));
-  const handleMoveRight = () => setShapes((prev) => rotateRight(prev));
-  const handleMovePosition = () => setSwapped((prev) => !prev);
-  const handleShapeBtn = () => setShapes(shuffleArray([...ALL_SHAPES]));
+  const displayShapes = useMemo(() => {
+    return swapped
+      ? [...shapes.slice(3, 6), ...shapes.slice(0, 3)]
+      : shapes;
+  }, [shapes, swapped]);
 
-  const displayShapes: ShapeType[] = swapped
-    ? [...shapes.slice(3, 6), ...shapes.slice(0, 3)]
-    : shapes;
+  const handleMoveLeft = useCallback(() => setShapes((prev) => rotateLeft(prev)), []);
+  const handleMoveRight = useCallback(() => setShapes((prev) => rotateRight(prev)), []);
+  const handleMovePosition = useCallback(() => setSwapped((prev) => !prev), []);
+
+  const handleShapeBtn = useCallback(() => {
+    setShapes(shuffleArray([...shapes]));
+  }, [shapes]);
 
   return (
     <div className="page-container">

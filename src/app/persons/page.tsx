@@ -261,7 +261,7 @@ export default function PersonsPage() {
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={8}>
           <Form.Item name="birthday" label={<span className="required-star">{t('page2.birthday')}</span>} rules={[{ required: true, message: '' }]}>
-            <DatePicker format="MM/DD/YYYY" style={{ width: '100%' }} placeholder="mm/dd/yy" />
+            <DatePicker format="MM/DD/YY" style={{ width: '100%' }} placeholder="mm/dd/yy" />
           </Form.Item>
         </Col>
         <Col xs={24} sm={10}>
