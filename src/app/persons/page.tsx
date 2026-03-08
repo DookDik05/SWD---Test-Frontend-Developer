@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useMemo, useState, Key } from 'react';
 import {
   Button, Col, DatePicker, Form, Input, Popconfirm,
-  Radio, Row, Select, Table, Tag, Typography, message,
+  Radio, Row, Select, Table, Tag, Typography, message, Modal,
 } from 'antd';
 import {
   UserAddOutlined, DeleteOutlined, EditOutlined,
@@ -67,8 +67,11 @@ export default function PersonsPage() {
   const { t, i18n } = useTranslation();
   const dispatch = useAppDispatch();
   const persons = useAppSelector((state) => state.persons.persons);
+  
   const [form] = Form.useForm<FormValues>();
+  const [editForm] = Form.useForm<FormValues>();
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
 
   useEffect(() => {
@@ -80,11 +83,10 @@ export default function PersonsPage() {
 
   const handleSubmit = useCallback((values: FormValues) => {
     const person: Person = {
-      id: editingId ?? uuidv4(),
+      id: uuidv4(),
       prefix: values.prefix,
       firstName: values.firstName,
       lastName: values.lastName,
-      // birthday is already a dayjs object from DatePicker
       birthday: values.birthday ? values.birthday.format('YYYY-MM-DD') : '',
       nationality: values.nationality ?? '',
       gender: values.gender ?? '',
@@ -92,21 +94,35 @@ export default function PersonsPage() {
       passport: values.passport ?? '',
       phone: values.phone ?? '',
     };
-
-    if (editingId) {
-      dispatch(updatePerson(person));
-      message.success(t('page2.updated'));
-    } else {
-      dispatch(addPerson(person));
-      message.success(t('page2.added'));
-    }
+    dispatch(addPerson(person));
+    message.success(t('page2.added'));
     form.resetFields();
+  }, [dispatch, form, t]);
+
+  const handleEditSubmit = useCallback((values: FormValues) => {
+    if (!editingId) return;
+    const person: Person = {
+      id: editingId,
+      prefix: values.prefix,
+      firstName: values.firstName,
+      lastName: values.lastName,
+      birthday: values.birthday ? values.birthday.format('YYYY-MM-DD') : '',
+      nationality: values.nationality ?? '',
+      gender: values.gender ?? '',
+      citizenId: values.citizenId ?? '',
+      passport: values.passport ?? '',
+      phone: values.phone ?? '',
+    };
+    dispatch(updatePerson(person));
+    message.success(t('page2.updated'));
+    setIsEditModalOpen(false);
     setEditingId(null);
-  }, [dispatch, editingId, form, t]);
+    editForm.resetFields();
+  }, [dispatch, editingId, editForm, t]);
 
   const handleEdit = useCallback((record: Person) => {
     setEditingId(record.id);
-    form.setFieldsValue({
+    editForm.setFieldsValue({
       prefix: record.prefix,
       firstName: record.firstName,
       lastName: record.lastName,
@@ -117,8 +133,14 @@ export default function PersonsPage() {
       passport: record.passport,
       phone: record.phone,
     });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [form]);
+    setIsEditModalOpen(true);
+  }, [editForm]);
+
+  const handleModalCancel = useCallback(() => {
+    setIsEditModalOpen(false);
+    setEditingId(null);
+    editForm.resetFields();
+  }, [editForm]);
 
   const handleDelete = useCallback((id: string) => {
     dispatch(deletePerson(id));
@@ -133,7 +155,6 @@ export default function PersonsPage() {
 
   const handleReset = useCallback(() => {
     form.resetFields();
-    setEditingId(null);
   }, [form]);
 
   const prefixLabel = useMemo<Record<string, string>>(() => ({
@@ -211,9 +232,85 @@ export default function PersonsPage() {
     },
   ], [t, prefixLabel, handleEdit, handleDelete]);
 
+  const renderFormFields = () => (
+    <>
+      <Row gutter={[12, 0]}>
+        <Col xs={24} sm={6} md={4}>
+          <Form.Item name="prefix" label={t('page2.prefix')} rules={[{ required: true, message: '' }]}>
+            <Select placeholder={t('page2.prefix')}>
+              <Select.Option value="mr">{t('page2.mr')}</Select.Option>
+              <Select.Option value="mrs">{t('page2.mrs')}</Select.Option>
+              <Select.Option value="ms">{t('page2.ms')}</Select.Option>
+            </Select>
+          </Form.Item>
+        </Col>
+        <Col xs={24} sm={9} md={10}>
+          <Form.Item name="firstName" label={t('page2.firstName')} rules={[{ required: true, message: '' }]}>
+            <Input prefix={<UserOutlined style={{ color: '#ccc' }} />} placeholder={t('page2.firstName')} />
+          </Form.Item>
+        </Col>
+        <Col xs={24} sm={9} md={10}>
+          <Form.Item name="lastName" label={t('page2.lastName')} rules={[{ required: true, message: '' }]}>
+            <Input placeholder={t('page2.lastName')} />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row gutter={[12, 0]}>
+        <Col xs={24} sm={8}>
+          <Form.Item name="birthday" label={t('page2.birthday')}>
+            <DatePicker style={{ width: '100%' }} placeholder={t('page2.birthday')} />
+          </Form.Item>
+        </Col>
+        <Col xs={24} sm={8}>
+          <Form.Item name="nationality" label={t('page2.nationality')}>
+            <Select placeholder={t('page2.selectNationality')}>
+              <Select.Option value="thai">{t('page2.thai')}</Select.Option>
+              <Select.Option value="american">{t('page2.american')}</Select.Option>
+              <Select.Option value="japanese">{t('page2.japanese')}</Select.Option>
+              <Select.Option value="other">{t('page2.other')}</Select.Option>
+            </Select>
+          </Form.Item>
+        </Col>
+        <Col xs={24} sm={8}>
+          <Form.Item name="gender" label={t('page2.gender')}>
+            <Radio.Group>
+              <Radio value="male">{t('page2.male')}</Radio>
+              <Radio value="female">{t('page2.female')}</Radio>
+              <Radio value="unspecified">{t('page2.unspecified')}</Radio>
+            </Radio.Group>
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row gutter={[12, 0]}>
+        <Col xs={24} sm={8}>
+          <Form.Item
+            name="citizenId"
+            label={t('page2.citizenId')}
+            rules={[{ pattern: /^\d{13}$/, message: t('page2.citizenIdError') }]}
+          >
+            <Input placeholder="x-xxxx-xxxxx-xx-x" maxLength={13} />
+          </Form.Item>
+        </Col>
+        <Col xs={24} sm={8}>
+          <Form.Item name="passport" label={t('page2.passport')}>
+            <Input placeholder={t('page2.passport')} />
+          </Form.Item>
+        </Col>
+        <Col xs={24} sm={8}>
+          <Form.Item
+            name="phone"
+            label={t('page2.phone')}
+            rules={[{ pattern: /^0\d{8,9}$/, message: t('page2.phoneError') }]}
+          >
+            <Input prefix={<PhoneOutlined style={{ color: '#ccc' }} />} placeholder="0xx-xxx-xxxx" maxLength={10} />
+          </Form.Item>
+        </Col>
+      </Row>
+    </>
+  );
+
   return (
     <>
-      {/* Navbar */}
       <nav className="app-navbar">
         <span className="app-navbar__logo">SWD Test</span>
         <div className="app-navbar__nav">
@@ -235,104 +332,19 @@ export default function PersonsPage() {
       </nav>
 
       <div className="page-container">
-
-        {/* Form Card */}
+        {/* Create Form Card */}
         <div className="ui-card" style={{ marginBottom: 20 }}>
           <Row align="middle" justify="space-between" style={{ marginBottom: 20 }}>
             <Col>
               <Title level={5} style={{ margin: 0 }}>
                 <UserAddOutlined style={{ marginRight: 8, color: '#FFA200' }} />
-                {editingId ? t('page2.editPerson') : t('page2.title')}
+                {t('page2.title')}
               </Title>
             </Col>
-            {editingId && (
-              <Col>
-                <Tag color="orange" style={{ borderRadius: 6 }}>
-                  {t('page2.editMode')}
-                </Tag>
-              </Col>
-            )}
           </Row>
 
           <Form form={form} layout="vertical" onFinish={handleSubmit}>
-            {/* Row 1 */}
-            <Row gutter={[12, 0]}>
-              <Col xs={24} sm={6} md={4}>
-                <Form.Item name="prefix" label={t('page2.prefix')} rules={[{ required: true, message: '' }]}>
-                  <Select placeholder={t('page2.prefix')}>
-                    <Select.Option value="mr">{t('page2.mr')}</Select.Option>
-                    <Select.Option value="mrs">{t('page2.mrs')}</Select.Option>
-                    <Select.Option value="ms">{t('page2.ms')}</Select.Option>
-                  </Select>
-                </Form.Item>
-              </Col>
-              <Col xs={24} sm={9} md={10}>
-                <Form.Item name="firstName" label={t('page2.firstName')} rules={[{ required: true, message: '' }]}>
-                  <Input prefix={<UserOutlined style={{ color: '#ccc' }} />} placeholder={t('page2.firstName')} />
-                </Form.Item>
-              </Col>
-              <Col xs={24} sm={9} md={10}>
-                <Form.Item name="lastName" label={t('page2.lastName')} rules={[{ required: true, message: '' }]}>
-                  <Input placeholder={t('page2.lastName')} />
-                </Form.Item>
-              </Col>
-            </Row>
-
-            {/* Row 2 */}
-            <Row gutter={[12, 0]}>
-              <Col xs={24} sm={8}>
-                <Form.Item name="birthday" label={t('page2.birthday')}>
-                  <DatePicker style={{ width: '100%' }} placeholder={t('page2.birthday')} />
-                </Form.Item>
-              </Col>
-              <Col xs={24} sm={8}>
-                <Form.Item name="nationality" label={t('page2.nationality')}>
-                  <Select placeholder={t('page2.selectNationality')}>
-                    <Select.Option value="thai">{t('page2.thai')}</Select.Option>
-                    <Select.Option value="american">{t('page2.american')}</Select.Option>
-                    <Select.Option value="japanese">{t('page2.japanese')}</Select.Option>
-                    <Select.Option value="other">{t('page2.other')}</Select.Option>
-                  </Select>
-                </Form.Item>
-              </Col>
-              <Col xs={24} sm={8}>
-                <Form.Item name="gender" label={t('page2.gender')}>
-                  <Radio.Group>
-                    <Radio value="male">{t('page2.male')}</Radio>
-                    <Radio value="female">{t('page2.female')}</Radio>
-                    <Radio value="unspecified">{t('page2.unspecified')}</Radio>
-                  </Radio.Group>
-                </Form.Item>
-              </Col>
-            </Row>
-
-            {/* Row 3 — Fix #5: validation for citizenId and phone */}
-            <Row gutter={[12, 0]}>
-              <Col xs={24} sm={8}>
-                <Form.Item
-                  name="citizenId"
-                  label={t('page2.citizenId')}
-                  rules={[{ pattern: /^\d{13}$/, message: t('page2.citizenIdError') }]}
-                >
-                  <Input placeholder="x-xxxx-xxxxx-xx-x" maxLength={13} />
-                </Form.Item>
-              </Col>
-              <Col xs={24} sm={8}>
-                <Form.Item name="passport" label={t('page2.passport')}>
-                  <Input placeholder={t('page2.passport')} />
-                </Form.Item>
-              </Col>
-              <Col xs={24} sm={8}>
-                <Form.Item
-                  name="phone"
-                  label={t('page2.phone')}
-                  rules={[{ pattern: /^0\d{8,9}$/, message: t('page2.phoneError') }]}
-                >
-                  <Input prefix={<PhoneOutlined style={{ color: '#ccc' }} />} placeholder="0xx-xxx-xxxx" maxLength={10} />
-                </Form.Item>
-              </Col>
-            </Row>
-
+            {renderFormFields()}
             <Row gutter={8} justify="end">
               <Col>
                 <Button onClick={handleReset} style={{ borderRadius: 9 }}>
@@ -392,6 +404,21 @@ export default function PersonsPage() {
         </div>
 
       </div>
+
+      {/* Edit Form Modal */}
+      <Modal
+        title={t('page2.editPerson')}
+        open={isEditModalOpen}
+        onCancel={handleModalCancel}
+        onOk={() => editForm.submit()}
+        okText={t('page2.submit')}
+        cancelText={t('page2.no')}
+        width={800}
+      >
+        <Form form={editForm} layout="vertical" onFinish={handleEditSubmit} style={{ marginTop: 20 }}>
+          {renderFormFields()}
+        </Form>
+      </Modal>
     </>
   );
 }
