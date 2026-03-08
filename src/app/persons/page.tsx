@@ -222,8 +222,8 @@ export default function PersonsPage() {
       <nav className="app-navbar">
         <span className="app-navbar__logo">SWD Test</span>
         <div className="app-navbar__nav">
-          <Link href="/"><Button size="small">{t('nav.page1')}</Button></Link>
-          <Link href="/persons"><Button type="primary" size="small">{t('nav.page2')}</Button></Link>
+          <Link href="/"><Button size="small" style={{ borderRadius: 6 }}>{t('nav.page1')}</Button></Link>
+          <Link href="/persons"><Button type="primary" size="small" style={{ borderRadius: 6 }}>{t('nav.page2')}</Button></Link>
         </div>
         <div className="app-navbar__right">
           <Select
