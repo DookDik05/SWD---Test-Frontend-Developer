@@ -71,7 +71,6 @@ export default function PersonsPage() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
 
-  // ── Fix #7: guard against overwriting existing Redux state on re-mount ──
   useEffect(() => {
     if (persons.length === 0) {
       const stored = loadFromStorage();
@@ -79,7 +78,6 @@ export default function PersonsPage() {
     }
   }, [dispatch, persons.length]);
 
-  // ── Fix #4 + #6: useCallback for stable handler references ──
   const handleSubmit = useCallback((values: FormValues) => {
     const person: Person = {
       id: editingId ?? uuidv4(),
@@ -97,7 +95,6 @@ export default function PersonsPage() {
 
     if (editingId) {
       dispatch(updatePerson(person));
-      // ── Fix #3: use t() instead of inline ternary strings ──
       message.success(t('page2.updated'));
     } else {
       dispatch(addPerson(person));
@@ -107,7 +104,6 @@ export default function PersonsPage() {
     setEditingId(null);
   }, [dispatch, editingId, form, t]);
 
-  // ── Fix #1: restore birthday as dayjs object for DatePicker ──
   const handleEdit = useCallback((record: Person) => {
     setEditingId(record.id);
     form.setFieldsValue({
@@ -140,7 +136,6 @@ export default function PersonsPage() {
     setEditingId(null);
   }, [form]);
 
-  // ── Fix #4 + #6: memoize prefixLabel and columns ──
   const prefixLabel = useMemo<Record<string, string>>(() => ({
     mr: t('page2.mr'),
     mrs: t('page2.mrs'),
