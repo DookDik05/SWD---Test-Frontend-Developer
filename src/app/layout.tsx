@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: "SWD Frontend Developer Test",
 };
 
+import RootLayoutContent from "@/app/RootLayoutContent";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -15,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="th">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <RootLayoutContent>{children}</RootLayoutContent>
+        </Providers>
       </body>
     </html>
   );

@@ -66,35 +66,58 @@ $green: #6EDA78;
 }
 
 .control-shape-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 160px;
   background: #fff;
-  border: 1px solid #E8EBEF;
+  border: 1px solid #E5E7EB;
   border-radius: 12px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  transition: background-color 0.3s ease;
-  
+  min-height: 120px;
+  width: 100%;
+
   &:hover {
-    background-color: #fcfcfc;
+    border-color: #6EDA78;
+    background-color: #FAFAFA;
+    transform: translateY(-2px);
+    
     .shape-triangle-left { border-right-color: $green; }
     .shape-triangle-right { border-left-color: $green; }
     .shape-triangle-up { border-bottom-color: $orange; }
     .shape-triangle-down { border-top-color: $orange; }
   }
 
+  .control-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 16px;
+
+    &.dual {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+
   .shape-badge {
     position: absolute;
     bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
     background: $green;
     color: white;
     padding: 4px 16px;
-    border-radius: 16px;
-    font-size: 14px;
-    font-weight: 600;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    z-index: 10;
   }
 }
 // ===== Trapezoid =====

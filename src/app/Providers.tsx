@@ -10,8 +10,19 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: '#FFA200',
+            colorPrimary: '#6EDA78',
+            borderRadius: 8,
+            fontFamily: 'Sarabun, Inter, sans-serif',
           },
+          components: {
+            Button: {
+              colorPrimary: '#6EDA78',
+              algorithm: true,
+            },
+            Card: {
+              borderRadiusLG: 12,
+            }
+          }
         }}
       >
         {children}
