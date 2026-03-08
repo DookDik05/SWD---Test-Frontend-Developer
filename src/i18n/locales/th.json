@@ -1,0 +1,48 @@
+{
+  "nav": {
+    "page1": "หน้าแรก",
+    "page2": "ข้อมูลบุคคล"
+  },
+  "page1": {
+    "title": "ปุ่มรูปทรง",
+    "moveShape": "เลื่อนรูปทรง",
+    "movePosition": "สลับตำแหน่ง",
+    "circle": "วงกลม",
+    "square": "สี่เหลี่ยม",
+    "trapezoid": "สี่เหลี่ยมคางหมู",
+    "parallelogram": "สี่เหลี่ยมด้านขนาน"
+  },
+  "page2": {
+    "title": "จัดการข้อมูลบุคคล",
+    "prefix": "คำนำหน้า",
+    "firstName": "ชื่อ",
+    "lastName": "นามสกุล",
+    "birthday": "วันเกิด",
+    "nationality": "สัญชาติ",
+    "gender": "เพศ",
+    "male": "ชาย",
+    "female": "หญิง",
+    "unspecified": "ไม่ระบุ",
+    "citizenId": "เลขบัตรประชาชน",
+    "passport": "หมายเลขพาสปอร์ต",
+    "phone": "เบอร์โทรศัพท์",
+    "submit": "บันทึก",
+    "reset": "ล้างข้อมูล",
+    "edit": "แก้ไข",
+    "delete": "ลบ",
+    "deleteSelected": "ลบรายการที่เลือก",
+    "confirmDelete": "ยืนยันการลบ?",
+    "yes": "ใช่",
+    "no": "ไม่",
+    "name": "ชื่อ-นามสกุล",
+    "mr": "นาย",
+    "mrs": "นาง",
+    "ms": "นางสาว",
+    "selectNationality": "เลือกสัญชาติ",
+    "thai": "ไทย",
+    "american": "อเมริกัน",
+    "japanese": "ญี่ปุ่น",
+    "other": "อื่นๆ",
+    "noData": "ไม่มีข้อมูล"
+  }
+}

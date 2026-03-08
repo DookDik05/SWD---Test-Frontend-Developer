@@ -1,0 +1,113 @@
+$orange: #FFA200;
+$green: #6EDA78;
+
+// ===== Circle =====
+.shape-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: $orange;
+  box-shadow: 0 4px 16px rgba(255, 162, 0, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+// ===== Square =====
+.shape-square {
+  width: 88px;
+  height: 88px;
+  border-radius: 12px;
+  background-color: $green;
+  box-shadow: 0 4px 16px rgba(110, 218, 120, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+// ===== Trapezoid =====
+.shape-trapezoid {
+  width: 0;
+  height: 0;
+  border-left: 45px solid transparent;
+  border-right: 45px solid transparent;
+  border-bottom: 88px solid $orange;
+  filter: drop-shadow(0 4px 10px rgba(255, 162, 0, 0.35));
+  transition: filter 0.25s ease, transform 0.25s ease;
+}
+
+// ===== Parallelogram =====
+.shape-parallelogram {
+  width: 108px;
+  height: 72px;
+  background-color: $green;
+  transform: skewX(-20deg);
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(110, 218, 120, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+// ===== Shape Wrapper =====
+.shape-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 160px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #eee;
+  cursor: pointer;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+
+  &:hover {
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.10);
+    transform: translateY(-4px);
+
+    .shape-circle,
+    .shape-square,
+    .shape-parallelogram {
+      transform: scale(1.08);
+    }
+
+    .shape-trapezoid {
+      filter: drop-shadow(0 8px 14px rgba(255, 162, 0, 0.45));
+    }
+  }
+}
+
+// ===== Shape Grid =====
+.shape-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  justify-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0.5; transform: scale(0.98); }
+  to   { opacity: 1;   transform: scale(1); }
+}
+
+// ===== Alternating colors =====
+.shape-color-0 {
+  .shape-circle,
+  .shape-square,
+  .shape-parallelogram { background-color: $orange; box-shadow: 0 4px 16px rgba(255,162,0,0.35); }
+  .shape-trapezoid { border-bottom-color: $orange; }
+}
+
+.shape-color-1 {
+  .shape-circle,
+  .shape-square,
+  .shape-parallelogram { background-color: $green; box-shadow: 0 4px 16px rgba(110,218,120,0.35); }
+  .shape-trapezoid { border-bottom-color: $green; }
+}
+
+// Parallelogram: undo inherited transform for color variants
+.shape-color-0 .shape-parallelogram,
+.shape-color-1 .shape-parallelogram {
+  transform: skewX(-20deg);
+}
+
+.shape-wrapper:hover .shape-color-0 .shape-parallelogram,
+.shape-wrapper:hover .shape-color-1 .shape-parallelogram {
+  transform: skewX(-20deg) scale(1.08);
+}

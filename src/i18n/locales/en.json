@@ -1,0 +1,48 @@
+{
+  "nav": {
+    "page1": "Home",
+    "page2": "Persons"
+  },
+  "page1": {
+    "title": "Shape Buttons",
+    "moveShape": "Move Shape",
+    "movePosition": "Move Position",
+    "circle": "Circle",
+    "square": "Square",
+    "trapezoid": "Trapezoid",
+    "parallelogram": "Parallelogram"
+  },
+  "page2": {
+    "title": "Person Management",
+    "prefix": "Title",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "birthday": "Birthday",
+    "nationality": "Nationality",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "unspecified": "Unspecified",
+    "citizenId": "Citizen ID",
+    "passport": "Passport No.",
+    "phone": "Phone",
+    "submit": "Submit",
+    "reset": "Reset",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteSelected": "Delete Selected",
+    "confirmDelete": "Are you sure to delete?",
+    "yes": "Yes",
+    "no": "No",
+    "name": "Name",
+    "mr": "Mr.",
+    "mrs": "Mrs.",
+    "ms": "Ms.",
+    "selectNationality": "Select Nationality",
+    "thai": "Thai",
+    "american": "American",
+    "japanese": "Japanese",
+    "other": "Other",
+    "noData": "No data"
+  }
+}
