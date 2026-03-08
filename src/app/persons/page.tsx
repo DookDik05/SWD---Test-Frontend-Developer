@@ -191,7 +191,7 @@ export default function PersonsPage() {
       sorter: (a, b) => a.gender.localeCompare(b.gender)
     },
     {
-      title: t('page2.phone'),
+      title: 'Mobile Phone',
       render: (_: unknown, r: Person) => {
         if (!r.phone) return <span style={{ color: '#ccc' }}>—</span>;
         return `${r.countryCode || ''}${r.phone}`;
@@ -209,23 +209,22 @@ export default function PersonsPage() {
       title: 'MANAGE',
       width: 140,
       render: (_: unknown, record: Person) => (
-        <Row gutter={6} wrap={false}>
+        <Row gutter={12} wrap={false}>
           <Col>
-            <Button size="small" type="text" onClick={() => handleEdit(record)} style={{ borderRadius: 7 }}>
-              {t('page2.edit').toUpperCase()}
-            </Button>
+            <span style={{ cursor: 'pointer', fontWeight: 600, fontSize: 13, color: '#4B5563' }} onClick={() => handleEdit(record)}>
+              EDIT
+            </span>
           </Col>
           <Col>
-            <Popconfirm
+             <Popconfirm
               title={t('page2.confirmDelete')}
               onConfirm={() => handleDelete(record.id)}
               okText={t('page2.yes')}
               cancelText={t('page2.no')}
-              okButtonProps={{ danger: true }}
             >
-              <Button size="small" type="text" danger style={{ borderRadius: 7 }}>
-                {t('page2.delete').toUpperCase()}
-              </Button>
+              <span style={{ cursor: 'pointer', fontWeight: 600, fontSize: 13, color: '#4B5563' }}>
+                DELETE
+              </span>
             </Popconfirm>
           </Col>
         </Row>

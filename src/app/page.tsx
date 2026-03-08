@@ -37,7 +37,7 @@ export default function Home() {
       >
         <Row gutter={[24, 24]} justify="center" style={{ width: '100%', maxWidth: 900 }}>
           
-          <Col xs={24} sm={12} md={8}>
+          <Col xs={24} sm={12} md={6}>
             <Link href="/shapes" style={{ textDecoration: 'none' }}>
               <Card 
                 hoverable 
@@ -53,17 +53,9 @@ export default function Home() {
             </Link>
           </Col>
 
-          <Col xs={24} sm={12} md={8}>
-            <Card 
-              hoverable 
-              className="ui-card"
-              style={{ height: 160, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-              bodyStyle={{ padding: 24 }}
-            >
-            </Card>
-          </Col>
 
-          <Col xs={24} sm={12} md={8}>
+
+          <Col xs={24} sm={12} md={6}>
             <Link href="/persons" style={{ textDecoration: 'none' }}>
               <Card 
                 hoverable 

@@ -104,33 +104,22 @@ export default function HomePage() {
           <div style={{ borderBottom: '1px solid #ddd', width: '90%', margin: '0 auto 40px auto' }}></div>
 
           {/* Bottom Grid Shapes */}
-          <div className="ui-card" style={{ background: 'transparent', boxShadow: 'none', padding: 0 }}>
-            <Row gutter={[20, 20]} justify="center">
-              {/* Row 1 / Offset handling based on original design which had an offset on the second row */}
-              {/* The screenshot shows a staggered layout. Row 1 has 3 items, shifted left. Row 2 has 3 items, shifted right. 
-                  We can achieve this by having a 4-column sub-grid or just margin manipulations, but since Antd Col is 24, we can do 
-                  Row 1: [offset 3][col 6][col 6][col 6]
-                  Row 2: [offset 6][col 6][col 6][col 6]
-              */}
+          <div className="ui-card" style={{ background: '#fff', padding: '40px 0', borderRadius: 16, border: '1px solid #eee', width: '90%', margin: '0 auto' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '30px', marginBottom: '30px', marginRight: '95px' }}>
               {displayShapes.slice(0, 3).map((shape, idx) => (
-                <Col span={6} offset={idx === 0 ? 3 : 0} style={{ display: 'flex', justifyContent: 'center' }} key={`r1-${idx}`}>
-                  <div className={`shape-wrapper shape-color-${idx % 2}`} onClick={handleShapeBtn}>
-                    <div className={`shape-${shape}`} />
-                  </div>
-                </Col>
+                <div key={`r1-${idx}`} className={`shape-wrapper shape-color-${idx % 2}`} onClick={handleShapeBtn}>
+                  <div className={`shape-${shape}`} />
+                </div>
               ))}
-            </Row>
+            </div>
 
-            <Row gutter={[20, 20]} justify="center" style={{ marginTop: 20 }}>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '30px', marginLeft: '95px' }}>
               {displayShapes.slice(3, 6).map((shape, idx) => (
-                <Col span={6} offset={idx === 0 ? 6 : 0} style={{ display: 'flex', justifyContent: 'center' }} key={`r2-${idx}`}>
-                  {/* Notice that the color pattern alternates differently on row 2 to match visual */}
-                  <div className={`shape-wrapper shape-color-${(idx + 1) % 2}`} onClick={handleShapeBtn}>
-                    <div className={`shape-${shape}`} />
-                  </div>
-                </Col>
+                <div key={`r2-${idx}`} className={`shape-wrapper shape-color-${(idx + 1) % 2}`} onClick={handleShapeBtn}>
+                  <div className={`shape-${shape}`} />
+                </div>
               ))}
-            </Row>
+            </div>
           </div>
 
         </div>
