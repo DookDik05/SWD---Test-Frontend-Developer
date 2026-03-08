@@ -37,16 +37,16 @@ export default function Home() {
       >
         <Row gutter={[24, 24]} justify="center" style={{ width: '100%', maxWidth: 900 }}>
           
-          <Col xs={24} sm={12} md={6}>
-            <Link href="/shapes" style={{ textDecoration: 'none' }}>
+          <Col span={10}>
+            <Link href="/shapes" style={{ textDecoration: 'none', display: 'block', width: '100%' }}>
               <Card 
                 hoverable 
                 className="ui-card"
-                style={{ height: 160, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-                bodyStyle={{ padding: 24 }}
+                style={{ minHeight: 120, display: 'flex', alignItems: 'center' }}
+                styles={{ body: { padding: '0 24px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%' } }}
               >
                 <Title level={5} style={{ margin: 0, fontWeight: 600 }}>{t('home.test1')}</Title>
-                <Text type="secondary" style={{ marginTop: 20, display: 'block' }}>
+                <Text type="secondary" style={{ margin: 0 }}>
                   {t('home.layoutStyle')}
                 </Text>
               </Card>
@@ -55,16 +55,16 @@ export default function Home() {
 
 
 
-          <Col xs={24} sm={12} md={6}>
-            <Link href="/persons" style={{ textDecoration: 'none' }}>
+          <Col span={10}>
+            <Link href="/persons" style={{ textDecoration: 'none', display: 'block', width: '100%' }}>
               <Card 
                 hoverable 
                 className="ui-card"
-                style={{ height: 160, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-                bodyStyle={{ padding: 24 }}
+                style={{ minHeight: 120, display: 'flex', alignItems: 'center' }}
+                styles={{ body: { padding: '0 24px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%' } }}
               >
                 <Title level={5} style={{ margin: 0, fontWeight: 600 }}>{t('home.test3')}</Title>
-                <Text type="secondary" style={{ marginTop: 20, display: 'block' }}>
+                <Text type="secondary" style={{ margin: 0 }}>
                   {t('home.formTable')}
                 </Text>
               </Card>
